@@ -2,12 +2,18 @@ pipeline {
     agent {
         docker {
             image 'node:latest'
+            reuseNode true
         }
     }
     stages {
         stage('Get Version') {
             steps {
-                sh 'npm --version'
+                sh '''
+                    npm start
+                    npm ci
+                    npm run build
+                    la -al
+                '''
             }
         }
     }
