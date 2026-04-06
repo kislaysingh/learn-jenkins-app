@@ -5,6 +5,7 @@ pipeline {
             reuseNode true
         }
     }
+
     stages {
         stage('Get Version') {
             steps {
@@ -15,20 +16,17 @@ pipeline {
                     npm --version
                     npm ci
                     npm run build
-                    ls -al 
+                    ls -al
                 '''
             }
         }
+
         stage('Test') {
-            agent {
-        docker {
-            image 'node:latest'
-            reuseNode true
-        }
-    }
             steps {
-                sh 'test -f build/index.html'
-                npm test
+                sh '''
+                    test -f build/index.html
+                    npm test
+                '''
             }
         }
     }
