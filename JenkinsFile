@@ -9,10 +9,12 @@ pipeline {
         stage('Get Version') {
             steps {
                 sh '''
+                    node --version
+                    npm --version
                     npm start
                     npm ci
                     npm run build
-                    la -al
+                    ls -al
                 '''
             }
         }
