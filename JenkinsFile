@@ -1,15 +1,18 @@
 pipeline {
-    agent any
-
+    agent {
+        docker {
+            image 'node:latest'
+        }
+    }
     stages {
-        stage('Hello') {
+        stage('Install npm') {
             steps {
-                echo 'Hello, World!'
-                sh '''
-                ls -la
-                echo "This is a shell command execution in Jenkins pipeline."
-                whoami
-                '''
+                sh 'npm install'
+            }
+        }
+        stage('Get Version') {
+            steps {
+                sh 'npm --version'
             }
         }
     }
