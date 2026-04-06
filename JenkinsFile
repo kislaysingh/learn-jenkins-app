@@ -5,7 +5,11 @@ pipeline {
         stage('Hello') {
             steps {
                 echo 'Hello, World!'
-                sh 'pwd'
+                sh '''
+                ls -la
+                echo "This is a shell command execution in Jenkins pipeline."
+                whoami
+                '''
             }
         }
     }
