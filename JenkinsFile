@@ -10,6 +10,9 @@ pipeline {
             steps {
                 sh '''
                     whoami
+                    ls -al
+                    node --version
+                    npm --version
                 '''
             }
         }
